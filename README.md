@@ -30,11 +30,11 @@ I've also created s standalone option, just download the standalone.jar file and
 
 java -jar standalone.jar
 
-If the default port is taken you can change the port for the execution by simply adding -httpPort=<PORT-NUMBER> at the end of the line.
+If the default port is taken you can change the port for the execution by simply adding -httpPort=PORT-NUMBER at the end of the line.
    
 After a few seconds the embedded server will be up and you will be able to access the application with the adress:
 
-localhost:<PORT-NUMBER>/standalone/
+localhost:PORT-NUMBER/standalone/
    
    
 
