@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+        <style>
+            .navbar {
+                overflow: hidden;
+                background-color: #333;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .navbar a {
+                float: left;
+                font-size: 16px;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            .dropdown {
+                float: left;
+                overflow: hidden;
+            }
+
+            .dropdown-submenu {
+                float: top;
+                overflow: hidden;
+            }
+
+            .dropdown .dropbtn{
+                font-size: 16px;  
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                background-color: red;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content-item {
+                display: none;
+                position: absolute;
+                left:70%;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a{
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+            .dropdown:hover .dropdown-content, .dropdown-submenu:hover .dropdown-content-item {
+                display: block;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="navbar navbar-expand-lg navbar-light bg-light">
+                <ui:repeat value="#{mainBean.lstMenu}" var="menu">
+                    <div class="dropdown">
+                        <button class="dropbtn" > #{menu.name}
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <h:panelGroup rendered="#{menu.subMenus.size() > 0}">
+                                <ui:repeat value="#{menu.subMenus}" var="subMenu">
+                                    <div class="dropdown-submenu">
+                                        <h:commandLink value="#{subMenu.name}">
+                                            <i class="fa fa-caret-down"></i>
+                                        </h:commandLink>
+                                        <div class="dropdown-content-item">
+                                            <ui:repeat value="#{mainBean.getMenuItemObjects(subMenu.name)}" var="item">
+                                                <a href="#{item.url}">#{item.name}</a>
+                                            </ui:repeat>
+                                        </div>
+                                    </div>
+                                </ui:repeat>
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{menu.items.size() > 0}">
+                                <ui:repeat value="#{mainBean.getMenuItemObjects(menu.name)}" var="item">
+                                    <a href="#{item.url}">#{item.name}</a>
+                                </ui:repeat>
+                            </h:panelGroup>
+                        </div>
+                    </div> 
+                </ui:repeat>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
