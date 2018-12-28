@@ -8,7 +8,7 @@ Dev Homework - DynamicMenus base.
 Using the AirTable Java API, I accessed the CONFIG table and retrieved all the records that fullfilled the criteria of:
 
 1. The value of the Live field must be 1 (or true).
-2. The Actions fields cannot be empty.
+2. The Actions field cannot be empty.
 3. The URL field cannont be empty.
 
 To manage the data more easily I created 3 classes: Menu, SubMenu and MenuItem. The relations between these goes as follows:
@@ -24,12 +24,22 @@ directly to the Java Class. Iterating to list of Menu objects I created in the C
 of each menu Iterated its SubMenu list and retrived the corresponding MenuItem list or, if said lis was empty, directly retrieved
 the MenuItem list corresponding the the Menu.
 
+In order to run this application you can deploy it in a application server that has a JVM.
+
+I've also created s standalone option, just download the standalone.jar file and run the following command in the commands window:
+
+java -jar standalone.jar
+
+If the default port is taken you can change the port for the execution by simply adding -httpPort=<PORT-NUMBER> at the end of the line.
+   
+After a few seconds the embedded server will be up and you will be able to access the application with the adress:
+
+localhost:<PORT-NUMBER>/standalone/
+   
+   
+
 The technologies used for this application where:
 - Java EE.
 - JSF.
 - Maven.
 - AirTable, using the Java API.
-
-In order to run this application you can deploy it in a application server that has a JVM.
-
-I've also created s standalone option.
